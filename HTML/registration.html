@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registration Page</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: lightblue;
+        }
+
+        /* .box {
+            width: 450px;
+            margin: 40px auto;
+            padding: 25px;
+            background-color: white;
+            border: 2px solid black;
+        } */
+
+        h1 {
+            text-align: center;
+        }
+
+        input {
+            margin: 8px;
+        } 
+    </style>
+</head>
+
+<body>
+
+    <!-- <div class="box"> -->
+
+        <h1>Registration Form</h1>
+
+        <form>
+
+            <label>Name:</label>
+            <input type="text" name="name" required>
+            <br>
+
+            <label>Email:</label>
+            <input type="email" name="email" required>
+            <br>
+
+            <label title = "password must be 8 characters long">Password:</label>
+            <input type="password" name="password" required>
+            <br>
+
+            <label>Gender:</label>
+
+            <input type="radio" name="gender" value="male">
+            Male
+
+            <input type="radio" name="gender" value="female">
+            Female
+
+            <input type="radio" name="gender" value="other">
+            Other
+
+            <br><br>
+
+            <label>Date of Birth:</label>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+            <input type="date" name="dob">
+            <br>
+
+            <label>Upload File:</label>
+            <input type="file" name="file">
+            <br><br>
+
+            <label>Subjects:</label>
+            <br>
+
+            <input type="checkbox" name="subject" value="html">
+            HTML
+
+            <input type="checkbox" name="subject" value="css">
+            CSS
+
+            <input type="checkbox" name="subject" value="javascript">
+            JavaScript
+
+            <input type="checkbox" name="subject" value="cpp">
+            C++
+
+            <br><br>
+
+            <input type="submit" value="Register">
+
+        </form>
+
+        <br>
+
+        <a href="login.html">Go to Login Page</a>
+
+    <!-- </div> -->
+
+</body>
+
+</html>
