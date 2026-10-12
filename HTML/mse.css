@@ -1,0 +1,168 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    line-height: 1.6;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+
+header {
+    background: #222;
+    color: #fff;
+    padding: 15px 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo span {
+    color: #e67e22;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+nav ul li a:hover {
+    color: #e67e22;
+}
+
+
+.hero {
+    background: #444;
+    color: #fff;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    margin-bottom: 20px;
+}
+
+
+.btn {
+    display: inline-block;
+    background: #e67e22;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.btn:hover {
+    background: #d35400;
+}
+
+
+.services {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.section-title {
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+.service-grid {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.service-card {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 230px;
+    border-radius: 5px;
+}
+
+.service-card h3 {
+    margin-bottom: 10px;
+}
+
+.service-card p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.price {
+    font-weight: bold;
+    color: #e67e22;
+}
+
+
+.about {
+    background: #f4f4f4;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.about p {
+    max-width: 600px;
+    margin: auto;
+}
+
+
+.contact {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.contact-form {
+    max-width: 500px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.contact-form button {
+    border: none;
+    cursor: pointer;
+}
+
+
+footer {
+    background: #222;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 0.9rem;
+}
