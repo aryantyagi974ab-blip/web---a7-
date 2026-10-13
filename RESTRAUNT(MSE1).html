@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Bistro & Bar | Contemporary Fine Dining</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        aura: {
+                            gold: '#D4AF37',
+                            'gold-light': '#F3E5AB',
+                            'gold-dark': '#997D20',
+                            charcoal: '#0F1115',
+                            card: '#161920',
+                            surface: '#1F242E',
+                            accent: '#E6A838'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Cinzel', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f1115;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a313d;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d4af37;
+        }
+        /* Backdrop blur glass */
+        .glass-panel {
+            background: rgba(22, 25, 32, 0.82);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.12);
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 50%, #AA7C11 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-[#0b0d11] text-gray-200 font-sans antialiased selection:bg-aura-gold selection:text-black min-h-screen flex flex-col justify-between">
+
+    <header class="sticky top-0 z-40 bg-[#0b0d11]/90 backdrop-blur-md border-b border-aura-gold/20 transition-all duration-300" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full border border-aura-gold/50 flex items-center justify-center bg-aura-card group-hover:border-aura-gold transition-colors">
+                    <span class="font-serif text-aura-gold text-xl font-bold">A</span>
+                </div>
+                <div>
+                    <span class="font-serif text-xl sm:text-2xl font-bold tracking-wider gold-gradient-text block">AURA</span>
+                    <span class="text-[10px] tracking-[0.3em] uppercase text-gray-400 block -mt-1">Bistro & Bar</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#hero" class="text-gray-300 hover:text-aura-gold transition-colors">Home</a>
+                <a href="#menu" class="text-gray-300 hover:text-aura-gold transition-colors">Our Menu</a>
+                <a href="#reserve" class="text-gray-300 hover:text-aura-gold transition-colors">Reservations</a>
+                <a href="#about" class="text-gray-300 hover:text-aura-gold transition-colors">About</a>
+                <a href="#reviews" class="text-gray-300 hover:text-aura-gold transition-colors">Reviews</a>
+                <a href="#contact" class="text-gray-300 hover:text-aura-gold transition-colors">Contact</a>
+            </nav>
+
+            <!-- Action Controls (Cart + Book Button) -->
+            <div class="flex items-center gap-4">
+                <!-- Cart Button -->
+                <button id="cartToggleBtn" class="relative p-2.5 rounded-full bg-aura-surface hover:bg-aura-card border border-aura-gold/30 hover:border-aura-gold transition-all" aria-label="Open Cart">
+                    <svg class="w-5 h-5 text-aura-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                    </svg>
+                    <span id="cartCountBadge" class="absolute -top-1.5 -right-1.5 bg-aura-gold text-black text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-md">0</span>
+                </button>
+
+                <!-- Book a Table quick CTA -->
+                <a href="#reserve" class="hidden sm:inline-flex items-center px-4 py-2 border border-aura-gold text-aura-gold hover:bg-aura-gold hover:text-black transition-all rounded-full text-xs font-semibold uppercase tracking-wider">
+                    Book Table
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2 text-gray-300 hover:text-aura-gold focus:outline-none" aria-label="Toggle Navigation">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden bg-[#0F1115] border-b border-aura-gold/20 px-6 py-4 space-y-3">
+            <a href="#hero" class="block py-2 text-gray-300 hover:text-aura-gold mobile-nav-link">Home</a>
+            <a href="#menu" class="block py-2 text-gray-300 hover:text-aura-gold mobile-nav-link">Our Menu</a>
+            <a href="#reserve" class="block py-2 text-gray-300 hover:text-aura-gold mobile-nav-link">Reservations</a>
+            <a href="#about" class="block py-2 text-gray-300 hover:text-aura-gold mobile-nav-link">About</a>
+            <a href="#reviews" class="block py-2 text-gray-300 hover:text-aura-gold mobile-nav-link">Reviews</a>
+            <a href="#contact" class="block py-2 text-gray-300 hover:text-aura-gold mobile-nav-link">Contact</a>
+            <div class="pt-2">
+                <a href="#reserve" class="block text-center py-2.5 bg-aura-gold text-black rounded-lg font-semibold text-xs tracking-wider uppercase">Book Table Now</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="hero" class="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-20 px-4">
+        <!-- Background Ambient Elements -->
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(212,175,55,0.15),transparent_60%)] pointer-events-none"></div>
+        <div class="absolute -top-40 -right-40 w-96 h-96 bg-amber-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-20 -left-20 w-96 h-96 bg-yellow-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto text-center relative z-10 space-y-8">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-aura-gold/40 bg-aura-surface/60 text-aura-gold text-xs font-semibold tracking-widest uppercase">
+                <span class="w-2 h-2 rounded-full bg-aura-gold animate-ping"></span>
+                Michelin Guide Recommended • Artisan Kitchen
+            </div>
+
+            <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white leading-tight">
+                Where Culinary Artistry Meets <span class="gold-gradient-text">Atmospheric Bliss</span>
+            </h1>
+
+            <p class="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed font-light">
+                Indulge in seasonal tasting menus, wood-fired culinary perfection, and curated botanic mixology in a sanctuary designed for refined senses.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                <a href="#menu" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-aura-gold text-black font-semibold text-sm tracking-wider uppercase hover:bg-yellow-400 transition-all shadow-lg shadow-aura-gold/20 flex items-center justify-center gap-2">
+                    <span>Explore Menu</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </a>
+                <button onclick="scrollToReserve()" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-aura-surface border border-aura-gold/50 text-white font-semibold text-sm tracking-wider uppercase hover:border-aura-gold hover:bg-aura-gold/10 transition-all flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4 text-aura-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    <span>Reserve a Table</span>
+                </button>
+            </div>
+
+            <!-- Quick highlights -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-12 border-t border-aura-gold/15 text-left">
+                <div class="p-3">
+                    <div class="text-aura-gold font-serif text-2xl font-bold">100%</div>
+                    <div class="text-xs text-gray-400 uppercase tracking-wider">Organic Local Sourcing</div>
+                </div>
+                <div class="p-3">
+                    <div class="text-aura-gold font-serif text-2xl font-bold">450°C</div>
+                    <div class="text-xs text-gray-400 uppercase tracking-wider">Stone Oven Pizzas</div>
+                </div>
+                <div class="p-3">
+                    <div class="text-aura-gold font-serif text-2xl font-bold">60+</div>
+                    <div class="text-xs text-gray-400 uppercase tracking-wider">Artisan Cellar Wines</div>
+                </div>
+                <div class="p-3">
+                    <div class="text-aura-gold font-serif text-2xl font-bold">4.9 ★</div>
+                    <div class="text-xs text-gray-400 uppercase tracking-wider">Guest Rating</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="py-20 bg-[#0F1115] relative border-t border-aura-gold/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-xs uppercase tracking-[0.25em] text-aura-gold font-semibold">Gastronomic Selection</span>
+                <h2 class="font-serif text-3xl sm:text-5xl font-bold text-white mt-2 mb-4">Our Culinary Menu</h2>
+                <p class="text-gray-400 text-sm">Every dish is crafted freshly on order by our master chefs with sustainably procured delicacies.</p>
+            </div>
+
+            <!-- Search and Filter Bar -->
+            <div class="mb-10 space-y-6">
+                <!-- Real-time Search Box -->
+                <div class="max-w-md mx-auto relative">
+                    <input type="text" id="menuSearchInput" placeholder="Search dishes, ingredients (e.g. Truffle, Salmon)..."
+                           class="w-full bg-aura-surface border border-aura-gold/30 rounded-full px-5 py-3 pl-12 text-sm text-white placeholder-gray-400 focus:outline-none focus:border-aura-gold shadow-inner transition-colors">
+                    <svg class="w-5 h-5 text-gray-400 absolute left-4 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                    <button id="clearSearchBtn" class="hidden absolute right-4 top-3.5 text-xs text-gray-400 hover:text-white" title="Clear">✕</button>
+                </div>
+
+                <!-- Category Filters -->
+                <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3" id="categoryFilterContainer">
+                    <!-- Dynamic Category buttons injected via JS -->
+                </div>
+            </div>
+
+            <!-- Food Cards Grid -->
+            <div id="menuGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Dynamically populated food cards -->
+            </div>
+
+            <!-- Empty State for Search -->
+            <div id="noResultsState" class="hidden py-16 text-center">
+                <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-aura-surface flex items-center justify-center text-aura-gold">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-1">No delicacies matched your search</h3>
+                <p class="text-sm text-gray-400 mb-4">Try checking spelling or exploring other categories.</p>
+                <button onclick="resetMenuFilters()" class="px-5 py-2 rounded-full border border-aura-gold text-aura-gold hover:bg-aura-gold hover:text-black text-xs font-semibold uppercase tracking-wider transition-all">
+                    Reset Filters
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="reserve" class="py-20 relative bg-[#0b0d11]">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel rounded-3xl p-6 sm:p-12 relative overflow-hidden shadow-2xl">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    <!-- Left Promo Text -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <span class="text-xs uppercase tracking-widest text-aura-gold font-semibold">Reserve Your Experience</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white leading-tight">
+                            Table Reservations & Dining Lounge
+                        </h2>
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            Whether celebrating an intimate anniversary, a corporate dinner, or private cocktail gathering, we arrange the ideal ambiance for you.
+                        </p>
+                        <div class="space-y-3 pt-2 text-xs text-gray-400">
+                            <div class="flex items-center gap-3">
+                                <span class="w-5 h-5 rounded-full bg-aura-gold/20 text-aura-gold flex items-center justify-center font-bold">✓</span>
+                                <span>Immediate confirmation via SMS & Email</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="w-5 h-5 rounded-full bg-aura-gold/20 text-aura-gold flex items-center justify-center font-bold">✓</span>
+                                <span>Complimentary Welcome Drink on arrival</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="w-5 h-5 rounded-full bg-aura-gold/20 text-aura-gold flex items-center justify-center font-bold">✓</span>
+                                <span>Custom seating: Rooftop, Garden Patio or Intimate Booth</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Booking Form -->
+                    <div class="lg:col-span-7 bg-aura-surface/80 rounded-2xl p-6 sm:p-8 border border-aura-gold/20 shadow-xl">
+                        <form id="reservationForm" class="space-y-4" onsubmit="handleReservationSubmit(event)">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1">Full Name</label>
+                                    <input type="text" id="resName" required placeholder="Alexander Wright" class="w-full bg-[#12151b] border border-gray-700 rounded-lg px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-aura-gold">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1">Contact Phone</label>
+                                    <input type="tel" id="resPhone" required placeholder="+1 (555) 019-2834" class="w-full bg-[#12151b] border border-gray-700 rounded-lg px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-aura-gold">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1">Date</label>
+                                    <input type="date" id="resDate" required class="w-full bg-[#12151b] border border-gray-700 rounded-lg px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-aura-gold">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1">Guests</label>
+                                    <select id="resGuests" class="w-full bg-[#12151b] border border-gray-700 rounded-lg px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-aura-gold">
+                                        <option value="1">1 Person (Solo)</option>
+                                        <option value="2" selected>2 Guests (Romantic)</option>
+                                        <option value="3">3 Guests</option>
+                                        <option value="4">4 Guests (Family)</option>
+                                        <option value="5">5 Guests</option>
+                                        <option value="6+">6+ Party Gathering</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1">Time Slot</label>
+                                    <select id="resTime" class="w-full bg-[#12151b] border border-gray-700 rounded-lg px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-aura-gold">
+                                        <option>06:00 PM - Early Dinner</option>
+                                        <option selected>07:30 PM - Prime Dining</option>
+                                        <option>08:45 PM - Candlelight</option>
+                                        <option>10:00 PM - Late Night Bar</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1">Seating Atmosphere</label>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <label class="flex items-center gap-2 p-2 rounded-lg border border-gray-700 text-xs cursor-pointer hover:border-aura-gold bg-[#12151b]">
+                                        <input type="radio" name="resAtmosphere" value="Indoor Fine Dining" checked class="text-aura-gold focus:ring-0">
+                                        <span>Indoor Grand</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 p-2 rounded-lg border border-gray-700 text-xs cursor-pointer hover:border-aura-gold bg-[#12151b]">
+                                        <input type="radio" name="resAtmosphere" value="Outdoor Garden Patio" class="text-aura-gold focus:ring-0">
+                                        <span>Garden Patio</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 p-2 rounded-lg border border-gray-700 text-xs cursor-pointer hover:border-aura-gold bg-[#12151b]">
+                                        <input type="radio" name="resAtmosphere" value="Private Romantic Booth" class="text-aura-gold focus:ring-0">
+                                        <span>Private Booth</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1">Special Notes / Dietary Preferences</label>
+                                <textarea id="resNotes" rows="2" placeholder="Birthday surprise dessert, vegan options preferred, window seat requested..." class="w-full bg-[#12151b] border border-gray-700 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none focus:border-aura-gold"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-3 bg-aura-gold hover:bg-yellow-400 text-black font-bold uppercase tracking-wider text-xs rounded-lg transition-all shadow-md">
+                                Confirm Reservation Request
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 bg-[#0F1115] border-t border-aura-gold/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80"
+                         alt="Aura Bistro Interior"
+                         onerror="this.src='https://placehold.co/800x600/161920/D4AF37?text=Aura+Bistro'"
+                         class="rounded-3xl shadow-2xl border border-aura-gold/30 object-cover w-full h-[420px]">
+                    <div class="absolute -bottom-6 -right-4 sm:bottom-6 sm:-right-6 glass-panel p-4 sm:p-5 rounded-2xl max-w-xs shadow-xl hidden sm:block">
+                        <div class="font-serif text-aura-gold font-bold text-lg">Chef Antoine Laurent</div>
+                        <p class="text-xs text-gray-300 mt-1">"Cooking is translating love and nature's harmony onto a ceramic canvas."</p>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <span class="text-xs uppercase tracking-[0.25em] text-aura-gold font-semibold">Our Philosophy</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white">An Ode to Sensory Harmony</h2>
+                    <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+                        Established in 2018, Aura Bistro & Bar emerged from a vision to redefine modern bistro culture. We unify timeless European techniques with bold botanical infusions, presenting guests with sensory harmony from the first pour to the final bite.
+                    </p>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Our produce is hand-picked daily from ethical heirloom farms, our seafood is wild-caught from certified sustainable fishermen, and all pastas and bread doughs ferment naturally for 48 hours.
+                    </p>
+                    <div class="grid grid-cols-3 gap-4 pt-4 border-t border-aura-gold/20 text-center">
+                        <div>
+                            <div class="text-2xl font-serif text-aura-gold font-bold">14+</div>
+                            <div class="text-[11px] text-gray-400 uppercase tracking-wider">Culinary Awards</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-serif text-aura-gold font-bold">100%</div>
+                            <div class="text-[11px] text-gray-400 uppercase tracking-wider">Scratch-Made</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-serif text-aura-gold font-bold">48 Hrs</div>
+                            <div class="text-[11px] text-gray-400 uppercase tracking-wider">Sourdough Ferment</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="py-20 bg-[#0b0d11] relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-12">
+                <div>
+                    <span class="text-xs uppercase tracking-widest text-aura-gold font-semibold">Guest Experiences</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mt-1">What Diners Are Saying</h2>
+                </div>
+                <button onclick="openReviewModal()" class="px-6 py-3 rounded-full bg-aura-surface border border-aura-gold/40 text-aura-gold hover:bg-aura-gold hover:text-black transition-all font-semibold text-xs tracking-wider uppercase flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                    <span>Write a Review</span>
+                </button>
+            </div>
+
+            <!-- Dynamic Reviews Grid -->
+            <div id="reviewsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamically populated reviews -->
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-[#090A0D] border-t border-aura-gold/20 pt-16 pb-12 text-gray-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+            <!-- Col 1: Brand Info -->
+            <div class="space-y-4">
+                <div class="flex items-center gap-2">
+                    <span class="font-serif text-xl font-bold text-aura-gold">AURA</span>
+                    <span class="text-xs tracking-widest uppercase">Bistro & Bar</span>
+                </div>
+                <p class="text-xs text-gray-400 leading-relaxed">
+                    A refined haven delivering multisensory culinary creations, artisanal drinks, and unforgettable dining memories.
+                </p>
+                <div class="text-xs space-y-1">
+                    <p class="text-white">📍 452 Grand Avenue, Beverly Hills, CA 90210</p>
+                    <p class="text-white">📞 +1 (310) 844-9022</p>
+                    <p class="text-white">✉️ concierge@aurabistrobar.com</p>
+                </div>
+            </div>
+
+            <!-- Col 2: Service Hours -->
+            <div class="space-y-3">
+                <h4 class="font-serif text-base text-white font-semibold">Opening Hours</h4>
+                <div class="text-xs space-y-2">
+                    <div class="flex justify-between border-b border-gray-800 pb-1">
+                        <span>Mon - Thu:</span>
+                        <span class="text-gray-200">5:00 PM – 11:00 PM</span>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-800 pb-1">
+                        <span>Fri - Sat:</span>
+                        <span class="text-aura-gold">4:30 PM – 1:00 AM</span>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-800 pb-1">
+                        <span>Sunday Brunch:</span>
+                        <span class="text-gray-200">11:00 AM – 9:00 PM</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Col 3: Quick Navigation -->
+            <div class="space-y-3">
+                <h4 class="font-serif text-base text-white font-semibold">Quick Links</h4>
+                <ul class="text-xs space-y-2">
+                    <li><a href="#menu" class="hover:text-aura-gold transition-colors">Seasonal Menu</a></li>
+                    <li><a href="#reserve" class="hover:text-aura-gold transition-colors">VIP Private Dining</a></li>
+                    <li><a href="#about" class="hover:text-aura-gold transition-colors">Our Story & Ethos</a></li>
+                    <li><a href="#reviews" class="hover:text-aura-gold transition-colors">Verified Guest Reviews</a></li>
+                    <li><a href="javascript:void(0)" onclick="showToast('Careers portal opens soon! Contact us by email.')" class="hover:text-aura-gold transition-colors">Careers & Talents</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 4: Newsletter -->
+            <div class="space-y-3">
+                <h4 class="font-serif text-base text-white font-semibold">VIP Club & Invites</h4>
+                <p class="text-xs text-gray-400">Receive private event invitations, secret cellar releases, and monthly specials.</p>
+                <form onsubmit="handleNewsletter(event)" class="space-y-2">
+                    <input type="email" id="newsletterEmail" required placeholder="Your email address" class="w-full bg-[#161920] border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-aura-gold">
+                    <button type="submit" class="w-full py-2 bg-aura-gold text-black rounded-lg text-xs font-bold uppercase tracking-wider hover:bg-yellow-400 transition-colors">
+                        Subscribe
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-gray-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
+            <p>© 2026 Aura Bistro & Bar. All culinary rights reserved.</p>
+            <div class="flex gap-4">
+                <a href="javascript:void(0)" onclick="showToast('Privacy Policy details loaded.')" class="hover:text-gray-300">Privacy Policy</a>
+                <a href="javascript:void(0)" onclick="showToast('Terms of service available on demand.')" class="hover:text-gray-300">Terms of Dining</a>
+                <a href="javascript:void(0)" onclick="showToast('Food allergy advisory active.')" class="hover:text-gray-300">Allergen Guide</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cartDrawerBackdrop" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden transition-opacity"></div>
+    <div id="cartDrawer" class="fixed top-0 right-0 bottom-0 w-full sm:w-[450px] bg-[#12151c] border-l border-aura-gold/30 z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col shadow-2xl">
+        <!-- Cart Header -->
+        <div class="p-5 border-b border-gray-800 flex items-center justify-between bg-[#161920]">
+            <div class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-aura-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                <h3 class="font-serif text-lg font-bold text-white">Your Order</h3>
+                <span id="cartDrawerItemCount" class="text-xs bg-aura-surface px-2 py-0.5 rounded text-aura-gold border border-aura-gold/30 font-semibold">0 items</span>
+            </div>
+            <button id="cartCloseBtn" class="p-2 text-gray-400 hover:text-white rounded-lg hover:bg-aura-surface transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+        </div>
+
+        <!-- Cart Items List Container -->
+        <div id="cartItemsContainer" class="flex-1 overflow-y-auto p-5 space-y-4">
+            <!-- Cart items populated via JS -->
+        </div>
+
+        <!-- Promo and Pricing Summary -->
+        <div class="p-5 border-t border-gray-800 bg-[#0f1115] space-y-3">
+            <!-- Promo code input -->
+            <div class="flex gap-2">
+                <input type="text" id="promoInput" placeholder="Promo code (e.g. AURA20)" class="flex-1 uppercase bg-[#181d25] border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-aura-gold">
+                <button onclick="applyPromoCode()" class="px-4 py-2 bg-aura-surface hover:bg-aura-gold hover:text-black border border-aura-gold/40 text-aura-gold rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">
+                    Apply
+                </button>
+            </div>
+            <div id="promoFeedback" class="text-[11px] hidden"></div>
+
+            <!-- Price Breakdown -->
+            <div class="space-y-1.5 text-xs text-gray-300 pt-2 border-t border-gray-800">
+                <div class="flex justify-between">
+                    <span>Subtotal</span>
+                    <span id="cartSubtotal" class="font-semibold text-white">$0.00</span>
+                </div>
+                <div class="flex justify-between" id="discountRow" style="display: none;">
+                    <span class="text-emerald-400">Discount (20% off)</span>
+                    <span id="cartDiscount" class="text-emerald-400 font-semibold">-$0.00</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Estimated Tax (8.5%)</span>
+                    <span id="cartTax" class="font-semibold text-white">$0.00</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Service & Kitchen Fee</span>
+                    <span id="cartServiceFee" class="font-semibold text-white">$2.50</span>
+                </div>
+                <div class="flex justify-between text-base font-bold text-aura-gold pt-2 border-t border-gray-800">
+                    <span>Total Amount</span>
+                    <span id="cartTotal">$0.00</span>
+                </div>
+            </div>
+
+            <!-- Proceed Button -->
+            <button id="checkoutBtn" onclick="openCheckoutModal()" class="w-full py-3 rounded-xl bg-aura-gold hover:bg-yellow-400 text-black font-bold uppercase tracking-wider text-xs transition-colors shadow-lg shadow-aura-gold/20 flex items-center justify-center gap-2">
+                <span>Proceed to Checkout</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <div id="checkoutModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-[#12151c] border border-aura-gold/30 rounded-2xl w-full max-w-lg p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">✕</button>
+            <h3 class="font-serif text-2xl font-bold text-white mb-1">Finalize Order</h3>
+            <p class="text-xs text-gray-400 mb-6">Confirm your dining selection and contact details.</p>
+
+            <form id="checkoutForm" onsubmit="handlePlaceOrder(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs uppercase font-semibold text-gray-300 mb-1">Dining Method</label>
+                    <div class="grid grid-cols-3 gap-2">
+                        <label class="p-2.5 rounded-lg border border-gray-700 bg-aura-surface flex items-center justify-center gap-2 text-xs cursor-pointer hover:border-aura-gold">
+                            <input type="radio" name="diningMethod" value="Dine-in" checked onchange="toggleAddressField(false)">
+                            <span>Dine-In</span>
+                        </label>
+                        <label class="p-2.5 rounded-lg border border-gray-700 bg-aura-surface flex items-center justify-center gap-2 text-xs cursor-pointer hover:border-aura-gold">
+                            <input type="radio" name="diningMethod" value="Takeaway" onchange="toggleAddressField(false)">
+                            <span>Takeaway</span>
+                        </label>
+                        <label class="p-2.5 rounded-lg border border-gray-700 bg-aura-surface flex items-center justify-center gap-2 text-xs cursor-pointer hover:border-aura-gold">
+                            <input type="radio" name="diningMethod" value="Delivery" onchange="toggleAddressField(true)">
+                            <span>Delivery</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs uppercase font-semibold text-gray-300 mb-1">Your Name</label>
+                        <input type="text" id="orderName" required placeholder="Elena Vance" class="w-full bg-[#181d25] border border-gray-700 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none focus:border-aura-gold">
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase font-semibold text-gray-300 mb-1">Phone Number</label>
+                        <input type="tel" id="orderPhone" required placeholder="+1 555-0199" class="w-full bg-[#181d25] border border-gray-700 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none focus:border-aura-gold">
+                    </div>
+                </div>
+
+                <div id="addressFieldContainer" class="hidden">
+                    <label class="block text-xs uppercase font-semibold text-gray-300 mb-1">Delivery Address</label>
+                    <input type="text" id="orderAddress" placeholder="Suite, Apt #, Street, City" class="w-full bg-[#181d25] border border-gray-700 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none focus:border-aura-gold">
+                </div>
+
+                <div>
+                    <label class="block text-xs uppercase font-semibold text-gray-300 mb-1">Payment Option</label>
+                    <select id="paymentMethod" class="w-full bg-[#181d25] border border-gray-700 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none focus:border-aura-gold">
+                        <option value="Card at Table / Delivery">Credit Card / Apple Pay</option>
+                        <option value="Cash upon Dining">Cash on Dining / Delivery</option>
+                        <option value="Aura VIP Member Card">Aura VIP Concierge Billing</option>
+                    </select>
+                </div>
+
+                <div class="p-3 rounded-lg bg-aura-surface/60 border border-aura-gold/20 flex justify-between items-center text-xs">
+                    <span class="text-gray-300">Final Payable Amount:</span>
+                    <span id="checkoutModalTotal" class="text-base font-bold text-aura-gold">$0.00</span>
+                </div>
+
+                <button type="submit" class="w-full py-3 rounded-xl bg-aura-gold hover:bg-yellow-400 text-black font-bold uppercase tracking-wider text-xs transition-colors shadow-lg">
+                    Confirm & Place Order
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="quickViewModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-[#12151c] border border-aura-gold/30 rounded-2xl w-full max-w-xl overflow-hidden shadow-2xl relative">
+            <button onclick="closeQuickView()" class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black">✕</button>
+            <div id="quickViewContent">
+                <!-- Dynamically rendered -->
+            </div>
+        </div>
+    </div>
+
+    <div id="reviewModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-[#12151c] border border-aura-gold/30 rounded-2xl w-full max-w-md p-6 shadow-2xl relative">
+            <button onclick="closeReviewModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">✕</button>
+            <h3 class="font-serif text-xl font-bold text-white mb-1">Share Your Experience</h3>
+            <p class="text-xs text-gray-400 mb-4">Your rating inspires our chefs and team members.</p>
+
+            <form id="newReviewForm" onsubmit="handleReviewSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs uppercase font-semibold text-gray-300 mb-1">Your Name</label>
+                    <input type="text" id="reviewerName" required placeholder="Claire Bennett" class="w-full bg-[#181d25] border border-gray-700 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none focus:border-aura-gold">
+                </div>
+                <div>
+                    <label class="block text-xs uppercase font-semibold text-gray-300 mb-1">Rating</label>
+                    <select id="reviewerRating" class="w-full bg-[#181d25] border border-gray-700 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none focus:border-aura-gold">
+                        <option value="5">★★★★★ (5 Stars - Exceptional)</option>
+                        <option value="4">★★★★☆ (4 Stars - Great)</option>
+                        <option value="3">★★★☆☆ (3 Stars - Satisfactory)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs uppercase font-semibold text-gray-300 mb-1">Favorite Dish Ordered</label>
+                    <input type="text" id="reviewerDish" placeholder="e.g. Truffle Mushroom Risotto" class="w-full bg-[#181d25] border border-gray-700 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none focus:border-aura-gold">
+                </div>
+                <div>
+                    <label class="block text-xs uppercase font-semibold text-gray-300 mb-1">Feedback Comments</label>
+                    <textarea id="reviewerComments" rows="3" required placeholder="The flavors were sublime, outstanding hospitality..." class="w-full bg-[#181d25] border border-gray-700 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none focus:border-aura-gold"></textarea>
+                </div>
+                <button type="submit" class="w-full py-2.5 bg-aura-gold hover:bg-yellow-400 text-black font-bold uppercase tracking-wider text-xs rounded-lg transition-colors">
+                    Publish Review
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <script>
+        // High quality dishes database with matching Unsplash imagery
+        const MENU_ITEMS = [
+            {
+                id: 'm1',
+                title: 'Truffle Mushroom Risotto',
+                category: 'Main Course',
+                price: 28.50,
+                rating: 4.9,
+                badge: "Chef's Special",
+                dietary: 'Veg',
+                desc: 'Carnaroli rice slow-stirred with wild forest porcini, aged parmesan reggiano, and shaved black winter truffles.',
+                image: 'https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?auto=format&fit=crop&w=800&q=80',
+                prepTime: '20-25 mins',
+                calories: '480 kcal'
+            },
+            {
+                id: 'm2',
+                title: 'Wood-fired Margherita D.O.P.',
+                category: 'Wood-fired Pizzas',
+                price: 22.00,
+                rating: 4.8,
+                badge: 'Signature',
+                dietary: 'Veg',
+                desc: 'San Marzano tomato base, fresh buffalo mozzarella, fragrant wild basil leaves, extra virgin olive oil crust.',
+                image: 'https://images.unsplash.com/photo-1604382355076-af4b0eb60143?auto=format&fit=crop&w=800&q=80',
+                prepTime: '15 mins',
+                calories: '650 kcal'
+            },
+            {
+                id: 'm3',
+                title: 'Wagyu Prime Smash Burger',
+                category: 'Main Course',
+                price: 26.00,
+                rating: 4.9,
+                badge: 'Bestseller',
+                dietary: 'Non-Veg',
+                desc: 'Dual seared A5 Wagyu patties, smoked cheddar, caramelized shallots, artisanal brioche bun with truffle aioli.',
+                image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80',
+                prepTime: '18 mins',
+                calories: '820 kcal'
+            },
+            {
+                id: 'm4',
+                title: 'Crispy Calamari Fritti',
+                category: 'Starters & Appetizers',
+                price: 18.50,
+                rating: 4.7,
+                badge: 'Crispy',
+                dietary: 'Non-Veg',
+                desc: 'Tender Monterey squid dusted with semolina & spiced sea salt, served alongside preserved lemon and garlic aioli.',
+                image: 'https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=800&q=80',
+                prepTime: '12 mins',
+                calories: '390 kcal'
+            },
+            {
+                id: 'm5',
+                title: 'Nordic Salmon Gravlax',
+                category: 'Starters & Appetizers',
+                price: 21.00,
+                rating: 4.9,
+                badge: 'Fresh Catch',
+                dietary: 'Gluten-Free',
+                desc: 'Cured Atlantic salmon ribbons, pickled mustard seeds, baby dill sprigs, citrus crème fraîche, and caperberries.',
+                image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80',
+                prepTime: '10 mins',
+                calories: '320 kcal'
+            },
+            {
+                id: 'm6',
+                title: 'Diavola Spicy Salami Pizza',
+                category: 'Wood-fired Pizzas',
+                price: 24.50,
+                rating: 4.8,
+                badge: 'Hot & Spicy',
+                dietary: 'Non-Veg',
+                desc: 'Spicy Calabrian soppressata, crushed red chili, smoked fior di latte, hot honey drizzle on charred blistered crust.',
+                image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?auto=format&fit=crop&w=800&q=80',
+                prepTime: '15 mins',
+                calories: '710 kcal'
+            },
+            {
+                id: 'm7',
+                title: 'Valrhona Molten Lava Cake',
+                category: 'Artisan Desserts',
+                price: 16.00,
+                rating: 4.9,
+                badge: 'Decadent',
+                dietary: 'Veg',
+                desc: 'Warm Belgian 70% dark chocolate center with Madagascar vanilla bean gelato and gold-dusted pistachio crumble.',
+                image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80',
+                prepTime: '14 mins',
+                calories: '540 kcal'
+            },
+            {
+                id: 'm8',
+                title: 'Classic Venetian Tiramisu',
+                category: 'Artisan Desserts',
+                price: 15.00,
+                rating: 4.9,
+                badge: 'Authentic',
+                dietary: 'Veg',
+                desc: 'Espresso-drenched savoiardi ladyfingers layered with whipped mascarpone zabaione and roasted cacao dust.',
+                image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=800&q=80',
+                prepTime: '8 mins',
+                calories: '420 kcal'
+            },
+            {
+                id: 'm9',
+                title: 'Smoked Rosemary Old Fashioned',
+                category: 'Craft Cocktails & Beverages',
+                price: 19.00,
+                rating: 5.0,
+                badge: 'Signature Bar',
+                dietary: 'Gluten-Free',
+                desc: 'Small-batch Kentucky bourbon, aromatic Angostura bitters, burnt rosemary sprig, expressed orange oil ice sphere.',
+                image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=800&q=80',
+                prepTime: '6 mins',
+                calories: '180 kcal'
+            },
+            {
+                id: 'm10',
+                title: 'Yuzu Botanical Mojito',
+                category: 'Craft Cocktails & Beverages',
+                price: 14.50,
+                rating: 4.7,
+                badge: 'Refreshing',
+                dietary: 'Veg',
+                desc: 'Fresh Japanese yuzu juice, garden spearmint, sugarcane nectar, sparkling alkaline water with crushed crystalline ice.',
+                image: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80',
+                prepTime: '5 mins',
+                calories: '130 kcal'
+            },
+            {
+                id: 'm11',
+                title: 'Heirloom Burrata Caprese',
+                category: 'Starters & Appetizers',
+                price: 19.50,
+                rating: 4.8,
+                badge: "Chef's Pick",
+                dietary: 'Veg',
+                desc: 'Creamy Puglia burrata, heritage tri-color heirloom tomatoes, aged Modena balsamic glaze, toasted pine nuts.',
+                image: 'https://images.unsplash.com/photo-1592417817098-8f3d69109853?auto=format&fit=crop&w=800&q=80',
+                prepTime: '10 mins',
+                calories: '380 kcal'
+            },
+            {
+                id: 'm12',
+                title: 'Pan-Seared Chilean Sea Bass',
+                category: 'Main Course',
+                price: 36.00,
+                rating: 5.0,
+                badge: 'Gourmet',
+                dietary: 'Gluten-Free',
+                desc: 'Miso-marinated sea bass filet over sauteed baby bok choy and ginger-lemongrass infused broth.',
+                image: 'https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?auto=format&fit=crop&w=800&q=80',
+                prepTime: '22 mins',
+                calories: '490 kcal'
+            }
+        ];
+
+        const CATEGORIES = [
+            'All',
+            'Starters & Appetizers',
+            'Main Course',
+            'Wood-fired Pizzas',
+            'Artisan Desserts',
+            'Craft Cocktails & Beverages'
+        ];
+
+        let initialReviews = [
+            {
+                name: 'Lady Vivienne Sterling',
+                rating: 5,
+                dish: 'Truffle Mushroom Risotto',
+                text: 'The best risotto I have tasted outside of Piedmont! The wine pairing advised by the sommelier was absolute perfection.'
+            },
+            {
+                name: 'Marcus Holloway',
+                rating: 5,
+                dish: 'Wood-fired Margherita D.O.P.',
+                text: 'The crust on their pizza has incredible fermentation bubbles and smokiness. Wonderful ambiance for weekend dates.'
+            },
+            {
+                name: 'Dr. Sophia Reyes',
+                rating: 5,
+                dish: 'Smoked Rosemary Old Fashioned',
+                text: 'The bar theater and the aroma of roasted rosemary filled our table. Exceptional hospitality from start to finish.'
+            }
+        ];
+
+        // State Management
+        let cart = [];
+        let activeCategory = 'All';
+        let searchQuery = '';
+        let discountPercent = 0;
+        let appliedPromoCode = '';
+
+        function loadCartFromStorage() {
+            try {
+                const saved = localStorage.getItem('aura_cart');
+                if (saved) {
+                    cart = JSON.parse(saved);
+                }
+            } catch (e) {
+                cart = [];
+            }
+            updateCartUI();
+        }
+
+        function saveCartToStorage() {
+            try {
+                localStorage.setItem('aura_cart', JSON.stringify(cart));
+            } catch (e) {}
+        }
+
+        function addToCart(dishId) {
+            const item = MENU_ITEMS.find(m => m.id === dishId);
+            if (!item) return;
+
+            const existing = cart.find(ci => ci.id === dishId);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({
+                    id: item.id,
+                    title: item.title,
+                    price: item.price,
+                    image: item.image,
+                    category: item.category,
+                    quantity: 1
+                });
+            }
+
+            saveCartToStorage();
+            updateCartUI();
+            showToast(`Added "${item.title}" to cart!`);
+        }
+
+        function updateItemQuantity(dishId, delta) {
+            const item = cart.find(ci => ci.id === dishId);
+            if (!item) return;
+
+            item.quantity += delta;
+            if (item.quantity <= 0) {
+                removeFromCart(dishId);
+                return;
+            }
+
+            saveCartToStorage();
+            updateCartUI();
+        }
+
+        function removeFromCart(dishId) {
+            const index = cart.findIndex(ci => ci.id === dishId);
+            if (index > -1) {
+                const removedTitle = cart[index].title;
+                cart.splice(index, 1);
+                saveCartToStorage();
+                updateCartUI();
+                showToast(`Removed "${removedTitle}" from cart`);
+            }
+        }
+
+        function updateCartUI() {
+            const badge = document.getElementById('cartCountBadge');
+            const drawerBadge = document.getElementById('cartDrawerItemCount');
+            const container = document.getElementById('cartItemsContainer');
+
+            const totalItemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            badge.textContent = totalItemsCount;
+            drawerBadge.textContent = `${totalItemsCount} item${totalItemsCount === 1 ? '' : 's'}`;
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="h-64 flex flex-col items-center justify-center text-center text-gray-400">
+                        <svg class="w-12 h-12 mb-3 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                        <p class="font-serif text-base text-gray-300">Your basket is currently empty</p>
+                        <p class="text-xs text-gray-500 mt-1">Discover handcrafted plates from our menu.</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = cart.map(item => `
+                    <div class="flex items-center gap-3 p-3 bg-aura-surface/60 rounded-xl border border-gray-800 hover:border-aura-gold/30 transition-colors">
+                        <img src="${item.image}" alt="${item.title}" class="w-16 h-16 rounded-lg object-cover flex-shrink-0" onerror="this.src='https://placehold.co/100x100/161920/D4AF37?text=Aura'">
+                        <div class="flex-1 min-w-0">
+                            <h4 class="text-sm font-semibold text-white truncate">${item.title}</h4>
+                            <div class="text-xs text-aura-gold font-bold mt-0.5">$${(item.price * item.quantity).toFixed(2)}</div>
+                            <div class="text-[11px] text-gray-400">$${item.price.toFixed(2)} each</div>
+                        </div>
+                        <div class="flex items-center gap-1.5 bg-[#0e1117] rounded-lg p-1 border border-gray-800">
+                            <button onclick="updateItemQuantity('${item.id}', -1)" class="w-6 h-6 rounded flex items-center justify-center text-gray-300 hover:text-white hover:bg-gray-800 text-xs font-bold transition-colors">−</button>
+                            <span class="w-6 text-center text-xs font-bold text-white">${item.quantity}</span>
+                            <button onclick="updateItemQuantity('${item.id}', 1)" class="w-6 h-6 rounded flex items-center justify-center text-gray-300 hover:text-white hover:bg-gray-800 text-xs font-bold transition-colors">+</button>
+                        </div>
+                        <button onclick="removeFromCart('${item.id}')" class="p-1.5 text-gray-500 hover:text-red-400 rounded transition-colors" title="Remove item">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                        </button>
+                    </div>
+                `).join('');
+            }
+
+            // Calculations
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const discountAmt = subtotal * (discountPercent / 100);
+            const taxableAmount = Math.max(0, subtotal - discountAmt);
+            const tax = taxableAmount * 0.085;
+            const serviceFee = subtotal > 0 ? 2.50 : 0;
+            const finalTotal = taxableAmount + tax + serviceFee;
+
+            document.getElementById('cartSubtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('cartTax').textContent = `$${tax.toFixed(2)}`;
+            document.getElementById('cartServiceFee').textContent = `$${serviceFee.toFixed(2)}`;
+            document.getElementById('cartTotal').textContent = `$${finalTotal.toFixed(2)}`;
+            document.getElementById('checkoutModalTotal').textContent = `$${finalTotal.toFixed(2)}`;
+
+            const discountRow = document.getElementById('discountRow');
+            if (discountPercent > 0) {
+                discountRow.style.display = 'flex';
+                document.getElementById('cartDiscount').textContent = `-$${discountAmt.toFixed(2)}`;
+            } else {
+                discountRow.style.display = 'none';
+            }
+        }
+
+        function applyPromoCode() {
+            const input = document.getElementById('promoInput');
+            const code = input.value.trim().toUpperCase();
+            const feedback = document.getElementById('promoFeedback');
+
+            if (!code) {
+                feedback.className = 'text-[11px] text-yellow-400 block';
+                feedback.textContent = 'Please enter a coupon code.';
+                return;
+            }
+
+            if (code === 'AURA20') {
+                discountPercent = 20;
+                appliedPromoCode = 'AURA20';
+                feedback.className = 'text-[11px] text-emerald-400 font-semibold block';
+                feedback.textContent = '✓ 20% Discount unlocked with AURA20!';
+                updateCartUI();
+                showToast('20% Discount applied to your order!');
+            } else {
+                discountPercent = 0;
+                appliedPromoCode = '';
+                feedback.className = 'text-[11px] text-rose-400 block';
+                feedback.textContent = 'Invalid promo code. Use "AURA20" for 20% off.';
+                updateCartUI();
+            }
+        }
+
+        function renderCategories() {
+            const container = document.getElementById('categoryFilterContainer');
+            container.innerHTML = CATEGORIES.map(cat => {
+                const isActive = activeCategory === cat;
+                return `
+                    <button onclick="setCategory('${cat}')"
+                            class="px-4 py-2 rounded-full text-xs font-semibold tracking-wider transition-all duration-200 ${
+                                isActive 
+                                ? 'bg-aura-gold text-black shadow-md shadow-aura-gold/20 scale-105' 
+                                : 'bg-aura-surface text-gray-300 hover:text-white hover:border-aura-gold/50 border border-gray-800'
+                            }">
+                        ${cat}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function setCategory(cat) {
+            activeCategory = cat;
+            renderCategories();
+            renderMenuItems();
+        }
+
+        function renderMenuItems() {
+            const grid = document.getElementById('menuGrid');
+            const emptyState = document.getElementById('noResultsState');
+
+            const filtered = MENU_ITEMS.filter(item => {
+                const matchesCat = (activeCategory === 'All') || (item.category === activeCategory);
+                const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                      item.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                      item.category.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesCat && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            grid.innerHTML = filtered.map(item => `
+                <div class="bg-aura-card rounded-2xl overflow-hidden border border-gray-800/80 hover:border-aura-gold/40 transition-all duration-300 flex flex-col group hover:-translate-y-1 shadow-lg">
+                    <!-- Image Container -->
+                    <div class="relative h-48 w-full overflow-hidden bg-gray-900">
+                        <img src="${item.image}" alt="${item.title}" loading="lazy"
+                             onerror="this.src='https://placehold.co/600x400/161920/D4AF37?text=${encodeURIComponent(item.title)}'"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <!-- Badges -->
+                        <div class="absolute top-3 left-3 flex flex-wrap gap-1">
+                            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider bg-black/75 backdrop-blur-sm text-aura-gold border border-aura-gold/30">
+                                ${item.badge}
+                            </span>
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-wider ${
+                                item.dietary === 'Veg' ? 'bg-emerald-950/80 text-emerald-400 border border-emerald-500/40' :
+                                item.dietary === 'Gluten-Free' ? 'bg-amber-950/80 text-amber-300 border border-amber-500/40' :
+                                'bg-rose-950/80 text-rose-400 border border-rose-500/40'
+                            }">
+                                ${item.dietary}
+                            </span>
+                        </div>
+                        <!-- Quick View Overlay Button -->
+                        <button onclick="openQuickView('${item.id}')"
+                                class="absolute top-3 right-3 p-2 rounded-full bg-black/70 hover:bg-black text-gray-200 hover:text-aura-gold transition-colors opacity-90 group-hover:opacity-100"
+                                title="Quick Preview">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                        </button>
+                    </div>
+
+                    <!-- Card Body -->
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+                        <div class="space-y-1.5">
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="text-aura-gold uppercase tracking-wider font-semibold text-[11px]">${item.category}</span>
+                                <div class="flex items-center text-amber-400 gap-1 text-xs">
+                                    <span>★</span>
+                                    <span class="font-bold text-gray-200">${item.rating}</span>
+                                </div>
+                            </div>
+                            <h3 class="font-serif text-lg font-bold text-white group-hover:text-aura-gold transition-colors leading-snug">
+                                ${item.title}
+                            </h3>
+                            <p class="text-xs text-gray-400 leading-relaxed line-clamp-2">
+                                ${item.desc}
+                            </p>
+                        </div>
+
+                        <!-- Card Footer Action -->
+                        <div class="pt-3 border-t border-gray-800/80 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-gray-500 uppercase block font-medium">Price</span>
+                                <span class="text-lg font-bold text-aura-gold font-serif">$${item.price.toFixed(2)}</span>
+                            </div>
+                            <button onclick="addToCart('${item.id}')"
+                                    class="px-4 py-2 rounded-xl bg-aura-surface hover:bg-aura-gold hover:text-black border border-aura-gold/40 text-aura-gold text-xs font-semibold uppercase tracking-wider transition-all duration-200 flex items-center gap-1.5 shadow-sm active:scale-95">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                                <span>Add to Cart</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function resetMenuFilters() {
+            activeCategory = 'All';
+            searchQuery = '';
+            document.getElementById('menuSearchInput').value = '';
+            document.getElementById('clearSearchBtn').classList.add('hidden');
+            renderCategories();
+            renderMenuItems();
+        }
+
+        function openQuickView(dishId) {
+            const item = MENU_ITEMS.find(m => m.id === dishId);
+            if (!item) return;
+
+            const modalContent = document.getElementById('quickViewContent');
+            modalContent.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                    <img src="${item.image}" alt="${item.title}" class="h-64 md:h-full w-full object-cover" onerror="this.src='https://placehold.co/600x400/161920/D4AF37?text=${encodeURIComponent(item.title)}'">
+                    <div class="p-6 space-y-4 flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2">
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-aura-gold/20 text-aura-gold border border-aura-gold/40">${item.badge}</span>
+                                <span class="text-xs text-gray-400 font-semibold uppercase">${item.dietary}</span>
+                            </div>
+                            <h3 class="font-serif text-2xl font-bold text-white">${item.title}</h3>
+                            <p class="text-xs text-gray-300 leading-relaxed">${item.desc}</p>
+                            
+                            <div class="grid grid-cols-2 gap-2 py-2 text-xs text-gray-400 border-y border-gray-800">
+                                <div>⏱ Prep: <span class="text-white">${item.prepTime}</span></div>
+                                <div>🔥 Energy: <span class="text-white">${item.calories}</span></div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-2">
+                            <span class="text-2xl font-serif font-bold text-aura-gold">$${item.price.toFixed(2)}</span>
+                            <button onclick="addToCart('${item.id}'); closeQuickView();" class="px-5 py-2.5 rounded-xl bg-aura-gold hover:bg-yellow-400 text-black font-bold text-xs uppercase tracking-wider transition-colors">
+                                Add to Order
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('quickViewModal').classList.remove('hidden');
+        }
+
+        function closeQuickView() {
+            document.getElementById('quickViewModal').classList.add('hidden');
+        }
+
+        function scrollToReserve() {
+            document.getElementById('reserve').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function handleReservationSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('resName').value;
+            const phone = document.getElementById('resPhone').value;
+            const date = document.getElementById('resDate').value;
+            const guests = document.getElementById('resGuests').value;
+            const time = document.getElementById('resTime').value;
+            const atmosphere = document.querySelector('input[name="resAtmosphere"]:checked').value;
+
+            // Feedback & Reset
+            showToast(`Reservation Confirmed for ${name}! Details sent to ${phone}.`);
+            e.target.reset();
+            
+            // Set current date again
+            setDefaultDate();
+        }
+
+        function setDefaultDate() {
+            const today = new Date().toISOString().split('T')[0];
+            const dateInput = document.getElementById('resDate');
+            if (dateInput) {
+                dateInput.value = today;
+                dateInput.min = today;
+            }
+        }
+
+        function renderReviews() {
+            const container = document.getElementById('reviewsGrid');
+            container.innerHTML = initialReviews.map(rev => `
+                <div class="bg-aura-card p-6 rounded-2xl border border-gray-800 hover:border-aura-gold/30 transition-all flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="flex text-aura-gold text-sm">
+                                ${'★'.repeat(rev.rating)}${'☆'.repeat(5 - rev.rating)}
+                            </div>
+                            <span class="text-[10px] text-gray-500 uppercase tracking-widest">Verified Diner</span>
+                        </div>
+                        <p class="text-gray-300 text-xs sm:text-sm italic leading-relaxed">"${rev.text}"</p>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-gray-800 flex items-center justify-between text-xs">
+                        <div>
+                            <div class="font-bold text-white">${rev.name}</div>
+                            <div class="text-[11px] text-aura-gold">Ordered: ${rev.dish || 'Tasting Menu'}</div>
+                        </div>
+                        <div class="w-7 h-7 rounded-full bg-aura-surface border border-aura-gold/30 flex items-center justify-center font-serif text-aura-gold text-xs font-bold">
+                            ${rev.name.charAt(0)}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openReviewModal() {
+            document.getElementById('reviewModal').classList.remove('hidden');
+        }
+
+        function closeReviewModal() {
+            document.getElementById('reviewModal').classList.add('hidden');
+        }
+
+        function handleReviewSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('reviewerName').value;
+            const rating = parseInt(document.getElementById('reviewerRating').value, 10);
+            const dish = document.getElementById('reviewerDish').value || 'Aura Tasting Menu';
+            const comments = document.getElementById('reviewerComments').value;
+
+            initialReviews.unshift({
+                name: name,
+                rating: rating,
+                dish: dish,
+                text: comments
+            });
+
+            renderReviews();
+            closeReviewModal();
+            e.target.reset();
+            showToast('Thank you! Your dining review was published.');
+        }
+
+        function openCheckoutModal() {
+            if (cart.length === 0) {
+                showToast('Your basket is empty. Please add delicious dishes first.');
+                return;
+            }
+            document.getElementById('checkoutModal').classList.remove('hidden');
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkoutModal').classList.add('hidden');
+        }
+
+        function toggleAddressField(show) {
+            const container = document.getElementById('addressFieldContainer');
+            const addressInput = document.getElementById('orderAddress');
+            if (show) {
+                container.classList.remove('hidden');
+                addressInput.setAttribute('required', 'required');
+            } else {
+                container.classList.add('hidden');
+                addressInput.removeAttribute('required');
+            }
+        }
+
+        function handlePlaceOrder(e) {
+            e.preventDefault();
+            const name = document.getElementById('orderName').value;
+            const method = document.querySelector('input[name="diningMethod"]:checked').value;
+            const prepMinutes = method === 'Delivery' ? '35-45 mins' : '20-25 mins';
+
+            showToast(`Order Placed Successfully! Est. Time: ${prepMinutes}`);
+            
+            // Clear cart
+            cart = [];
+            saveCartToStorage();
+            updateCartUI();
+            closeCheckoutModal();
+            toggleCartDrawer(false);
+            e.target.reset();
+        }
+
+        function handleNewsletter(e) {
+            e.preventDefault();
+            const email = document.getElementById('newsletterEmail').value;
+            showToast(`Welcome! VIP invitation dispatched to ${email}`);
+            e.target.reset();
+        }
+
+        // Toast feedback manager
+        function showToast(message) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'glass-panel text-white text-xs sm:text-sm font-medium px-4 py-3 rounded-xl border border-aura-gold/40 shadow-2xl flex items-center gap-2 transform translate-y-4 opacity-0 transition-all duration-300 pointer-events-auto';
+            toast.innerHTML = `
+                <span class="text-aura-gold font-bold">✦</span>
+                <span>${message}</span>
+            `;
+
+            container.appendChild(toast);
+
+            // Animate in
+            requestAnimationFrame(() => {
+                toast.classList.remove('translate-y-4', 'opacity-0');
+            });
+
+            // Animate out & remove
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 300);
+            }, 3500);
+        }
+
+        // Cart Drawer open/close toggles
+        function toggleCartDrawer(open) {
+            const drawer = document.getElementById('cartDrawer');
+            const backdrop = document.getElementById('cartDrawerBackdrop');
+
+            if (open) {
+                backdrop.classList.remove('hidden');
+                setTimeout(() => {
+                    backdrop.classList.remove('opacity-0');
+                    drawer.classList.remove('translate-x-full');
+                }, 10);
+            } else {
+                drawer.classList.add('translate-x-full');
+                backdrop.classList.add('opacity-0');
+                setTimeout(() => {
+                    backdrop.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderCategories();
+            renderMenuItems();
+            renderReviews();
+            loadCartFromStorage();
+            setDefaultDate();
+
+            // Cart drawer listeners
+            document.getElementById('cartToggleBtn').addEventListener('click', () => toggleCartDrawer(true));
+            document.getElementById('cartCloseBtn').addEventListener('click', () => toggleCartDrawer(false));
+            document.getElementById('cartDrawerBackdrop').addEventListener('click', () => toggleCartDrawer(false));
+
+            // Mobile menu toggle
+            const mobileBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu on link click
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Real-time search handling
+            const searchInput = document.getElementById('menuSearchInput');
+            const clearSearch = document.getElementById('clearSearchBtn');
+
+            searchInput.addEventListener('input', (e) => {
+                searchQuery = e.target.value.trim();
+                if (searchQuery.length > 0) {
+                    clearSearch.classList.remove('hidden');
+                } else {
+                    clearSearch.classList.add('hidden');
+                }
+                renderMenuItems();
+            });
+
+            clearSearch.addEventListener('click', () => {
+                searchInput.value = '';
+                searchQuery = '';
+                clearSearch.classList.add('hidden');
+                renderMenuItems();
+            });
+        });
+    </script>
+</body>
+</html>
